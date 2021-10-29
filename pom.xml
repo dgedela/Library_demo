@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- PROJECT SETTINGS -->
+	<groupId>com.sa.connector.protocol</groupId>
+	<artifactId>sa-protocol-generic-rest-connector</artifactId>
+	<version>1.20.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>SA - Protocol: Generic Connector (Parent)</name>
+	<url>http://www.serviceaide.com</url>
+
+	<!-- PROJECT PROPERTIES -->
+	<properties>
+		<connector.sdk.version>1.23.0-SNAPSHOT</connector.sdk.version>
+		<vsa.common.utils.version>1.23.0-SNAPSHOT</vsa.common.utils.version>
+
+		<skipTests>true</skipTests>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm aa Z</maven.build.timestamp.format>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<!-- PROJECT DEPENDENCIES -->
+	<dependencies>
+		<!-- Luma/VSA Common Utilities -->
+		<dependency>
+			<groupId>com.sa.vsa.common</groupId>
+			<artifactId>vsa-common-utils</artifactId>
+			<version>${vsa.common.utils.version}</version>
+		</dependency>
+		<!-- SA Connector SDK -->
+		<dependency>
+			<groupId>com.sa.connector.sdk</groupId>
+			<artifactId>sa-connector-sdk</artifactId>
+			<version>${connector.sdk.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- BUILD SETTINGS -->
+	<build>
+		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
+				defaults (may be moved to parent pom) -->
+			<plugins>
+				<!-- Set a JDK compiler level; set compiler arguments -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.7.0</version>
+					<configuration>
+						<!-- Enable/disable incrementation compilation feature -->
+						<useIncrementalCompilation>false</useIncrementalCompilation>
+						<!-- Set to true to generate metadata for reflection on method parameters. -->
+						<parameters>true</parameters>
+						<source>1.8</source>
+						<target>1.8</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+				<!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.0.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.20.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.5.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- MODULE SETTINGS -->
+	<modules>
+		<module>sa-generic-rest-connector</module>
+		<module>sa-generic-rest-connector-schemas</module>
+	</modules>
+
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://artifactory.serviceaide.com/artifactory/maven-repo/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>http://artifactory.serviceaide.com/artifactory/maven-repo/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>
